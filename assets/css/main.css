@@ -1,327 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --fore: hsl(0, 0%, 22%);
+    --back: hsl(0, 0%, 89%);
+    --bg-back: radial-gradient(
+      100% 50% at 50% bottom,
+      hsl(0, 0%, 97%), hsl(0, 1%, 78%)
+    );
+    --btn-back: hsl(0, 0%, 76%);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fore: hsl(0, 0%, 91%);
+    --back: hsl(0, 5%, 21%);
+    --bg-back: radial-gradient(
+    100% 75% at 50% bottom,
+    hsl(0, 0%, 40%), hsl(0, 0%, 13%)
+  );
+    --btn-back: hsl(0, 0%, 29%);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
 
-body {
-  font-family: Hack, monospace;
-  margin: 0;
-}
-
-.header__container {
-  width: 100%;
-  text-align: center;
-  color: #8F8F8F;
-}
-
-.header__span {
-  font-size: 12px;
-}
-
-.header__name {
-  position: relative;
-  margin: 16px auto;
-  font-size: 50px;
-  text-transform: uppercase;
-  width: max-content;
-}
-
-.nav__container {
-  display: flex;
-  justify-content: space-between;
-
-  background-color: #F9F9F9;
-  padding: 30px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-}
-
-.nav__link {
-  position: relative;
-  font-size: 20px;
-  color: #8F8F8F;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-/* hover effect based on https://codepen.io/grohit/pen/jObGzdG */
-.header__name::before,
-.nav__link::before {
-  content: attr(data-item);
-  transition: all 0.5s ease-in-out;
-  color: #8254ff;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.header__name:hover::before,
-.nav__link:hover::before {
-  width: 100%;
-}
-
-.section__container {
-  width: 100%;
-  background-color: #F9F9F9;
-  margin-top: 40px;
-  padding: 30px;
-  font-size: 18px;
-  color: #8F8F8F;
-  text-align: center;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-}
-
-.section__title {
-  margin: 0 0 16px 0;
-  font-size: 24px;
-  color: #8F8F8F;
-  text-transform: uppercase;
-}
-
-.about__image {
-  border-radius: 50%;
-}
-
-.about__text,
-.project__text {
-  margin: 20px 0 0 0;
-}
-
-
-
-.projects__section,
-.project__ring,
-.project__cimage {
-  position: absolute;
-  width:100%;
+html {
   height: 100%;
-  transform-style: preserve-3d;
-  user-select:none;
-}
-
-.project__ring.locked {
-  pointer-events: none;
-}
-
-.projects__section {
-  position: relative;
-}
-
-.project__container {
-  overflow:hidden;
-}
-
-.project__carousel {
-  display: none;
-  position: absolute;
-  perspective: 2000px;
-  width: 300px;
-  height: 400px;  
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  transition: opacity 200ms ease-in-out;
-}
-
-.project__carousel.hidden {
-  opacity: 0.075;
-}
-
-
-.project__detail {
-  position: relative;
-  transition: opacity 200ms ease-in-out;
-}
-
-.project__close {
-  position: absolute;
-  top: 0;
-  right: 50px;
-  display: none;
-  pointer-events: none;
-  cursor: pointer;
-
+  width: 100%;
   border: none;
-  background: none;
-  font-size: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.project__image {
-  width: 282px;
-  height: 400px;
-  object-fit: cover;
-}
-
-.project__controls {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
-}
-
-.project__select-btn {
-  background: none;
-  border: none;
-  opacity: 0.15;
-}
-
-.project__select-btn:enabled {
-  cursor: pointer;
-  opacity: 1;
-}
-
-.project__select-btn--prev img {
-  transform: rotateY(180deg);
-}
-
-.project__link {
-  padding: 8px 18px;
-  background-color: #8254FF;
-  border-radius: 4px;
-
-  font-size: 14px;
-  color: #FFFFFF;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.skills__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-
-  list-style: none;
+body {
   margin: 0;
   padding: 0;
-}
-
-.skill__item > a {
-  all: unset;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  gap: 5px;
-  font-size: 14px;
-  text-transform: uppercase;
-  cursor: pointer;
+  height: 100%;
+  font-family: 'Inter';
+  background: var(--bg-back);
 }
 
-.skill__icon {
-  width: 69px;
-  filter: grayscale(100%);
-  transition: filter 200ms ease-in-out;
-}
-
-.skill__icon:hover {
-  filter: grayscale(0);
-}
-
-.contact__list {
+.centered {
   display: flex;
-  justify-content: space-evenly;
-
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.contact__item {
-  text-decoration: none;
-  font-size: 0;
-}
-
-.contact__item > img {
-  width: 40px;
-  height: 40px;
-}
-
-.footer__container {
-  padding: 10px;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
 }
 
-.nav__container,
-.about__section,
-.project__detail,
-.skills__section,
-.contact__section {
-  max-width: 810px;
-  margin-right: auto;
-  margin-left: auto;
+main {
+  display: flex;
+  align-items: center;
 }
 
+main section.brand {
+  cursor: default;
+}
 
-@media screen and (min-width: 1280px) {
-  .nav__container,
-  .section__container {
-    padding: 50px;
-  }
+main section.brand h1 {
+  font-family: 'Chakra Petch';
+  font-size: 3rem;
+  flex-grow: 1;
+  color: var(--fore);
+  margin-bottom: 1rem;
+}
 
-  .about__content {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 50px;
+main section.brand div p {
+  font-family: 'Inter';
+  font-size: 1rem;
+  color: var(--fore);
+  flex-grow: 1;
+}
+
+main section.contact {
+  margin-top: 3rem;
+}
+
+button {
+  background: var(--btn-back);
+  background-size: 200% 100%;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 670;
+  line-height: 24px;
+  overflow: hidden;
+  padding: 12px 24px;
+  position: relative;
+  text-decoration: none;
+  transition: 0.2s;
+  color: var(--fore);
+}
+
+button svg {
+  left: -20px;
+  opacity: 0.5;
+  position: absolute;
+  top: -2px;
+  transition: 0.5s cubic-bezier(.5, -0.5, .5, 1.5);
+}
+
+button:hover svg {
+  opacity: 0.8;
+  transform: translateX(50px) scale(1.5);
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+button:active {
+  transform: scale(0.95) rotate(-3deg);
+}
+
+footer{
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  font-size: .8rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: var(--fore);
+}
+
+@media screen and (max-width: 600px) {
+  footer{
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
-
-  .about__image {
-    width: 282px;
+  footer p.linkedin{
+    order: 1;
   }
-
-  .project__carousel {
-    display: initial;
+  footer p.aknow{
+    order: 2;
   }
-
-  .project__detail {
-    opacity: 0;
-    pointer-events: none;
-    display: grid;
-    column-gap: 50px;
-    grid-template-rows: 1fr 40px;
-    grid-template-areas: "img text"
-                         "img controls";
+  footer p.copy{
+    order: 3;
   }
+}
 
-  .project__detail.show {
-    opacity: 1;
-    pointer-events: initial;
-  }  
+footer p{
+  margin-block-end: .5rem;
+  margin-block-start: .5rem;
+}
 
-  .project__detail.show .project__close {
-    display: initial;
-    pointer-events: initial;
-  }
+footer p.copy{
+  display: flex;
+  align-items: center; 
+}
 
-  .project__image {
-    grid-area: img;
-  }
+footer p.copy span:first-of-type{
+  margin-right: 5px;
+  font-size: 1.2rem;
+}
 
-  .project__text {
-    align-self: center;
-    grid-area: text
-  }
+footer p a{
+  color: var(--fore);
+}
 
-  .project__controls {
-    grid-area: controls;
-  }
+footer p.linkedin a{
+  font-size: 1rem;
+}
 
-  .project__detail {
-    padding: 0 50px;
-  }  
 
-  .skills__list {
-    gap: 50px;
-  }  
+.mirror{
+  display: inline-block;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
 
-  .skill__icon {
-    width: 100px;
-  }
-
-  .contact__item > img {
-    width: 80px;
-    height: 80px;
-  }
+.emoji {
+  font-family: "Twemoji Mozilla",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji",
+    "EmojiOne Color",
+    "Android Emoji",
+    sans-serif;
 }
